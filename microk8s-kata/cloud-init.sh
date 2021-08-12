@@ -13,7 +13,9 @@ mkdir -p $HOME/.kube/
 sudo usermod -a -G microk8s $USER
 sudo chown -f -R $USER ~/.kube
 sudo microk8s config > $HOME/.kube/config
+
 microk8s enable kata
+
 tee -a ~/.bash_aliases <<'EOF'
 function kubectl {
         sudo microk8s kubectl "$@"

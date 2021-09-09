@@ -4,9 +4,10 @@ set -ex pipefail
 export DEBIAN_FRONTEND=noninteractive
 
 echo "# make..."
-sudo apt-get install -y \
-        make \
-        uidmap
+sudo apt update && \ 
+sudo apt install -y \
+         make \
+         uidmap
         
 
 echo "# path..."

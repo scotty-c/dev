@@ -22,6 +22,16 @@ sudo tar -C /usr/local/nerdctl -xzf nerdctl-full-0.11.1-linux-amd64.tar.gz
 sudo mkdir -p /opt/cni/bin/
 sudo ln -s /usr/local/nerdctl/libexec/cni/* /opt/cni/bin/
 
+echo "# buildkit..."
+sudo ln -s /usr/local/nerdctl/lib/systemd/system/* /etc/systemd/system/
+sudo systemctl daemon-reload
+sudo systemctl enable buildkitd
+sudo systemctl start buildkitd
+
+echo "# stargz-snapshotter..."
+sudo systemctl enable stargz-snapshotter
+sudo systemctl start stargz-snapshotter
+
 echo "# rootless ..."
 sudo chown ubuntu:ubuntu /usr/local/nerdctl/bin/containerd-rootless-setuptool.sh
 sudo su ubuntu /bin/bash -c '/usr/local/nerdctl/bin/containerd-rootless-setuptool.sh install'

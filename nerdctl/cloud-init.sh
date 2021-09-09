@@ -10,10 +10,10 @@ sudo apt install -y \
          uidmap
         
 echo "# path..."
-sudo tee -a /etc/profile <<'EOF'
-PATH="$PATH:/usr/local/nerdctl/bin"
+sudo tee -a /etc/profile.d/nerdctl.sh <<'EOF'
+export PATH="$PATH:/usr/local/nerdctl/bin"
 EOF
-source /etc/profile
+sudo chmod a+x /etc/profile.d/nerdctl.sh
 
 echo "# nerdctl..."
 curl -OL https://github.com/containerd/nerdctl/releases/download/v0.11.1/nerdctl-full-0.11.1-linux-amd64.tar.gz

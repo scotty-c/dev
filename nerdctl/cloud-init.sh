@@ -24,8 +24,9 @@ sudo ln -s /usr/local/nerdctl/libexec/cni/* /opt/cni/bin/
 
 echo "# rootless ..."
 sudo chown ubuntu:ubuntu /usr/local/nerdctl/bin/containerd-rootless-setuptool.sh
-sudo su ubuntu /bin/bash -l '/usr/local/nerdctl/bin/containerd-rootless-setuptool.sh install'
-sudo su ubuntu /bin/bash -l '/usr/local/nerdctl/bin/containerd-rootless-setuptool.sh install-buildkit'
-sudo su ubuntu /bin/bash -l '/usr/local/nerdctl/bin/containerd-rootless-setuptool.sh install-stargz'
+sudo mv /usr/local/nerdctl/bin/containerd-rootless-setuptool.sh .
+sudo -E su ubuntu -c "/usr/bin/bash -l  ./containerd-rootless-setuptool.sh install"
+sudo -E su ubuntu -c "/usr/bin/bash -l  ./containerd-rootless-setuptool.sh install-buildkit"
+sudo -E su ubuntu -c "/usr/bin/bash -l  ./containerd-rootless-setuptool.sh install-stargz"
 
 echo "# complete!"

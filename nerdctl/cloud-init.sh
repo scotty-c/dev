@@ -4,7 +4,7 @@ set -ex pipefail
 export DEBIAN_FRONTEND=noninteractive
 
 echo "# make..."
-sudo apt update && \ 
+sudo apt update 
 sudo apt install -y \
          make \
          uidmap

@@ -18,4 +18,4 @@ Once that is finshed you can enter the shell by running the following command
 multipass shell nerdctl
 ```
 
-For all the nerdctl commands you can find [here](https://github.com/containerd/nerdctl#command-reference
+For all the nerdctl commands you can find [here](https://github.com/containerd/nerdctl#command-reference)

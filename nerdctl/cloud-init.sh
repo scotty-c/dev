@@ -15,6 +15,7 @@ source ~/.bash_aliases
 
 echo "# nerdctl..."
 curl -OL https://github.com/containerd/nerdctl/releases/download/v0.11.1/nerdctl-full-0.11.1-linux-arm64.tar.gz
-sudo tar -C /usr/local -xzf nerdctl-full-0.11.1-linux-arm64.tar.gz
+sudo mkdir -p /usr/local/nerdctl
+sudo tar -C /usr/local/nerdctl -xzf nerdctl-full-0.11.1-linux-arm64.tar.gz
 
 echo "# complete!"

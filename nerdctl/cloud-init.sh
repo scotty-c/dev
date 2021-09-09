@@ -5,7 +5,9 @@ export DEBIAN_FRONTEND=noninteractive
 
 echo "# make..."
 sudo apt-get install -y \
-        make
+        make \
+        uidmap
+        
 
 echo "# path..."
 tee -a ~/.bash_aliases <<'EOF'

@@ -9,7 +9,7 @@ sudo apt-get install -y \
 
 echo "# nerdctl..."
 curl -OL https://github.com/containerd/nerdctl/releases/download/v0.11.1/nerdctl-full-0.11.1-linux-arm64.tar.gz
-sudo tar -xzf nerdctl-full-0.11.1-linux-arm64.tar.gz -C /usr/local/bin
+sudo tar -xzf nerdctl-full-0.11.1-linux-arm64.tar.gz
 
 
 echo "# complete!"

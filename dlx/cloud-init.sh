@@ -32,7 +32,7 @@ cd dlx/bin
 ./distrobuilder.sh
 ./debootstrap.sh
 ./subuid.sh
-sudo -E su ubuntu -c "/usr/bin/bash -l cd /home/ubuntu/dlx && make install"
+sudo -u ubuntu "cd /home/ubuntu/dlx && make install"
 
 echo 'source <(dlx completion bash)' >>~/.bash_aliases
 

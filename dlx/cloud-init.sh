@@ -32,7 +32,8 @@ cd dlx/bin
 ./distrobuilder.sh
 ./debootstrap.sh
 ./subuid.sh
-sudo -u ubuntu "cd /home/ubuntu/dlx && make install"
+wget https://github.com/bketelsen/dlx/releases/download/v0.0.5/devlx_0.0.5_linux_amd64.tar.gz
+sudo tar -C /usr/local/bin -xzf devlx_0.0.5_linux_amd64.tar.gz
 
 echo 'source <(dlx completion bash)' >>~/.bash_aliases
 

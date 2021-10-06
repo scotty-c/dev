@@ -26,7 +26,7 @@ sudo chown -f -R $USER $HOME/go
 
 echo "# dlx..."
 git clone https://github.com/bketelsen/dlx.git
-chown -R ubuntu:ubuntu dlx
+chown -f -R $USER:$USER $HOME/dlx
 cd dlx/bin
 ./lxd.sh
 ./distrobuilder.sh

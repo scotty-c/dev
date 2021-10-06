@@ -5,7 +5,9 @@ export DEBIAN_FRONTEND=noninteractive
 
 echo "# make..."
 sudo apt-get install -y \
-        make
+        make \
+        gcc
+
 tee -a ~/.bash_aliases <<'EOF'
 PATH="$PATH:/usr/local/go/bin:'$HOME'/go/bin"
 EOF
@@ -28,6 +30,9 @@ cd dlx/bin
 ./lxd.sh
 ./distrobuilder.sh
 ./debootstrap.sh
-./sbuid.sh
+./subuid.sh
+cd .. && make install
+echo 'source <(dlx completion bash)' >>~/.bash_aliases
+
 
 echo "# complete!"

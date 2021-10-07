@@ -26,16 +26,15 @@ sudo chown -f -R $USER $HOME/go
 
 echo "# dlx..."
 git clone https://github.com/bketelsen/dlx.git
-chown -f -R $USER:$USER $HOME/dlx
 cd dlx/bin
 ./lxd.sh
 ./distrobuilder.sh
 ./debootstrap.sh
 ./subuid.sh
-wget https://github.com/bketelsen/dlx/releases/download/v0.0.5/devlx_0.0.5_linux_amd64.tar.gz
-sudo tar -C /usr/local/bin -xzf devlx_0.0.5_linux_amd64.tar.gz
-
+cd ..
+make install
+make build
+chown -f -R $USER:$USER $HOME/dlx
 echo 'source <(dlx completion bash)' >>~/.bash_aliases
-
 
 echo "# complete!"

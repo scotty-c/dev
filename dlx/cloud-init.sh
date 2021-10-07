@@ -36,6 +36,8 @@ make install
 make build
 chown -f -R $USER:$USER $HOME/dlx
 sudo mv bin/dlx /usr/local/bin/
+echo 'export LXD_DIR=/var/snap/lxd/common/lxd' >> ~/.bashrc
 echo 'source <(dlx completion bash)' >>~/.bash_aliases
+
 
 echo "# complete!"

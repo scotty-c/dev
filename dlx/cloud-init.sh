@@ -4,6 +4,7 @@ set -ex pipefail
 export DEBIAN_FRONTEND=noninteractive
 
 echo "# make..."
+sudo apt-get update
 sudo apt-get install -y \
         make \
         gcc

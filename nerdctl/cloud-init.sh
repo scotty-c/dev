@@ -17,7 +17,7 @@ sudo chmod a+x /etc/profile.d/nerdctl.sh
 
 echo "# nerdctl..."
 VERSION=v0.12.1
-curl -OL https://github.com/containerd/nerdctl/releases/download/v0.11.1/nerdctl-full-$VERSION-linux-amd64.tar.gz
+curl -OL https://github.com/containerd/nerdctl/releases/download/$VERSION/nerdctl-full-$VERSION-linux-amd64.tar.gz
 sudo mkdir -p /usr/local/nerdctl
 sudo tar -C /usr/local/nerdctl -xzf nerdctl-full-$VERSION-linux-amd64.tar.gz
 sudo mkdir -p /opt/cni/bin/

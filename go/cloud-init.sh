@@ -7,7 +7,7 @@ echo "# make..."
 sudo apt-get install -y \
         make
 tee -a ~/.bash_aliases <<'EOF'
-PATH="$PATH:/usr/local/go/bin:'$HOME'/go/bin"
+PATH="$PATH:/usr/local/go/bin:$HOME/go/bin"
 EOF
 source ~/.bash_aliases
 

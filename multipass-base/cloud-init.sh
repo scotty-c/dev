@@ -18,7 +18,7 @@ tee -a ~/.bash_aliases <<'EOF'
 function kubectl {
         sudo microk8s kubectl "$@"
 }
-PATH="$PATH:/usr/local/go/bin:'$HOME'/go/bin"
+PATH="$PATH:/usr/local/go/bin:$HOME/go/bin"
 
 source <(kubectl completion bash)
 

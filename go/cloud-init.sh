@@ -4,8 +4,8 @@ set -ex pipefail
 export DEBIAN_FRONTEND=noninteractive
 
 echo "# make..."
-sudo apt-get update 
-sudo apt-get install -y \
+sudo apt update 
+sudo apt install -y \
         make
 tee -a ~/.bash_aliases <<'EOF'
 PATH="$PATH:/usr/local/go/bin:$HOME/go/bin"

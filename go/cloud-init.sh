@@ -13,7 +13,7 @@ EOF
 source ~/.bash_aliases
 
 echo "# golang..."
-VERSION='1.15.11'
+VERSION='1.18.3'
 OS='linux'
 ARCH='amd64'
 

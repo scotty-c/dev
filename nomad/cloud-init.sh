@@ -3,9 +3,18 @@ set -ex pipefail
 
 export DEBIAN_FRONTEND=noninteractive
 
-echo "# make..."
+echo "# build tools..."
 sudo apt-get install -y \
-        make
+        build-essential 
+
+
+echo "# rust..."
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+
+echo "# spin..."
+wget https://github.com/fermyon/spin/releases/download/v0.3.0/spin-v0.3.0-linux-amd64.tar.gz
+tar -xzf spin-v0.3.0-linux-amd64.tar.gz
+sudo mv spin-v0.3.0-linux-amd64/spin /usr/local/bin/spin
 
 echo "# Install Nomad..." 
 curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
@@ -80,7 +89,7 @@ Requires=network-online.target
 After=network-online.target
 
 [Service]
-Type=notify
+Type=forking
 User=consul
 Group=consul
 ExecStart=/usr/bin/consul agent -dev -bind 127.0.0.1 -config-dir=/etc/consul.d/

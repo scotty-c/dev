@@ -12,6 +12,7 @@ curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
 sudo apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
 sudo apt-get update
 sudo apt-get install nomad -y
+sudo rm /etc/nomad.d/nomad.hcl
 sudo tee -a /etc/nomad.d/nomad.hcl <<'EOF'
 datacenter = "dc1" 
 data_dir = "/opt/nomad"  
@@ -62,7 +63,7 @@ sudo systemctl start nomad.service
 echo "# Install Consul..."
 sudo apt install consul -y
 sudo tee -a /etc/consul.d/consul.hcl <<'EOF'
-datacenter  = "wopr1"
+datacenter  = "dc1"
 data_dir    = "/opt/consul"
 client_addr = "0.0.0.0"
 ui          = true

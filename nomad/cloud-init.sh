@@ -61,8 +61,6 @@ sudo systemctl start nomad.service
 
 echo "# Install Consul..."
 sudo apt install consul -y
-sudo curl -o /etc/consul.d/consul.hcl https://raw.githubusercontent.com/scotty-c/lxc-builds/main/sources/conf/consul.hcl
-sudo curl -o /etc/systemd/system/consul.service https://raw.githubusercontent.com/scotty-c/lxc-builds/main/sources/conf/consul
 sudo tee -a /etc/consul.d/consul.hcl <<'EOF'
 datacenter  = "wopr1"
 data_dir    = "/opt/consul"

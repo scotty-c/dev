@@ -106,4 +106,13 @@ sudo chown chown -R consul:consul /opt/consul
 systemctl enable consul.service
 systemctl start consul.service
 
+echo "#env..."
+tee -a ~/.bashrc <<'EOF'
+export CONSUL_HTTP_ADDR=http://localhost:8500
+export NOMAD_ADDR=http://localhost:4646
+export BINDLE_URL=http://bindle.local.fermyon.link/v1
+export HIPPO_URL=http://hippo.local.fermyon.link
+EOF
+
+
 echo "# complete!"

@@ -12,7 +12,6 @@ curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
 sudo apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
 sudo apt-get update
 sudo apt-get install nomad -y
-sudo curl -o /etc/nomad.d/nomad.hcl https://raw.githubusercontent.com/scotty-c/lxc-builds/main/sources/conf/nomad.hcl
 sudo tee -a /etc/nomad.d/nomad.hcl <<'EOF'
 datacenter = "dc1" 
 data_dir = "/opt/nomad"  
@@ -64,6 +63,37 @@ echo "# Install Consul..."
 sudo apt install consul -y
 sudo curl -o /etc/consul.d/consul.hcl https://raw.githubusercontent.com/scotty-c/lxc-builds/main/sources/conf/consul.hcl
 sudo curl -o /etc/systemd/system/consul.service https://raw.githubusercontent.com/scotty-c/lxc-builds/main/sources/conf/consul
+sudo tee -a /etc/consul.d/consul.hcl <<'EOF'
+datacenter  = "wopr1"
+data_dir    = "/opt/consul"
+client_addr = "0.0.0.0"
+ui          = true
+server      = true
+
+bootstrap_expect = 1
+EOF
+
+sudo tee -a /etc/systemd/system/consul.service <<'EOF'
+[Unit]
+Description="HashiCorp Consul"
+Documentation=https://www.consul.io/
+Requires=network-online.target
+After=network-online.target
+
+[Service]
+Type=notify
+User=consul
+Group=consul
+ExecStart=/usr/bin/consul agent -dev -bind 127.0.0.1 -config-dir=/etc/consul.d/
+ExecReload=/bin/kill --signal HUP $MAINPID
+KillMode=process
+KillSignal=SIGTERM
+Restart=on-failure
+LimitNOFILE=65536
+
+[Install]
+WantedBy=multi-user.target
+EOF
 sudo chown chown -R consul:consul /opt/consul
 systemctl enable consul.service
 systemctl start consul.service

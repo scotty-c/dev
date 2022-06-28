@@ -104,7 +104,7 @@ LimitNOFILE=65536
 [Install]
 WantedBy=multi-user.target
 EOF
-sudo chown chown -R consul:consul /opt/consul
+sudo chown -R consul:consul /opt/consul
 sudo systemctl daemon-reload  
 sudo systemctl enable consul.service
 sudo systemctl start consul.service

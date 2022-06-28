@@ -9,12 +9,16 @@ sudo apt-get install -y \
 
 
 echo "# rust..."
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+su ubuntu -c "curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y"
+sudo chown -R ubuntu:ubuntu /home/ubuntu/.cargo/
+su ubuntu -c "cargo build --target wasm32-wasi --release"
 
 echo "# spin..."
 wget https://github.com/fermyon/spin/releases/download/v0.3.0/spin-v0.3.0-linux-amd64.tar.gz
 tar -xzf spin-v0.3.0-linux-amd64.tar.gz
 sudo mv spin /usr/local/bin/spin
+
+
 
 echo "# Install Nomad..." 
 curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
@@ -66,6 +70,8 @@ TasksMax=infinity
 WantedBy=multi-user.target
 EOF
 
+
+sudo systemctl daemon-reload  
 sudo systemctl enable nomad.service
 sudo systemctl start nomad.service
 
@@ -102,11 +108,12 @@ LimitNOFILE=65536
 WantedBy=multi-user.target
 EOF
 sudo chown chown -R consul:consul /opt/consul
-systemctl enable consul.service
-systemctl start consul.service
+sudo systemctl daemon-reload  
+sudo systemctl enable consul.service
+sudo systemctl start consul.service
 
 echo "#env..."
-tee -a ~/.bashrc <<'EOF'
+tee -a /home/ubuntu/.bashrc <<'EOF'
 export CONSUL_HTTP_ADDR=http://localhost:8500
 export NOMAD_ADDR=http://localhost:4646
 export BINDLE_URL=http://bindle.local.fermyon.link/v1

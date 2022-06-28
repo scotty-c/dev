@@ -119,9 +119,8 @@ EOF
 
 echo "installer..."
 git clone https://github.com/fermyon/installer.git
-cd installer/local/job 
-nomad run traefik.nomad
-nomad run -var="os=linux" -var="arch=amd64" bindle.nomad
-nomad run -var="os=linux" hippo.nomad
+nomad run installer/local/job/traefik.nomad
+nomad run -var="os=linux" -var="arch=amd64" installer/local/job/bindle.nomad
+nomad run -var="os=linux" installer/local/job/hippo.nomad
 
 echo "# complete!"

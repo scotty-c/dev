@@ -119,7 +119,7 @@ EOF
 
 echo "installer..."
 git clone https://github.com/fermyon/installer.git
-cd installer/local/jobs 
+cd installer/local/job 
 nomad run traefik.nomad
 nomad run -var="os=linux" -var="arch=amd64" bindle.nomad
 nomad run -var="os=linux" hippo.nomad

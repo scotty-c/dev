@@ -89,10 +89,9 @@ Requires=network-online.target
 After=network-online.target
 
 [Service]
-Type=forking
 User=consul
 Group=consul
-ExecStart=/usr/bin/consul agent -dev -bind 127.0.0.1 -config-dir=/etc/consul.d/
+ExecStart=/usr/bin/consul agent -bind 127.0.0.1 -config-dir=/etc/consul.d/
 ExecReload=/bin/kill --signal HUP $MAINPID
 KillMode=process
 KillSignal=SIGTERM

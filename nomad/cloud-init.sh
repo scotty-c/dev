@@ -11,7 +11,7 @@ sudo apt-get install -y \
 echo "# rust..."
 su ubuntu -c "curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y"
 sudo chown -R ubuntu:ubuntu /home/ubuntu/.cargo/
-su ubuntu -c "cargo build --target wasm32-wasi --release"
+
 
 echo "# spin..."
 wget https://github.com/fermyon/spin/releases/download/v0.3.0/spin-v0.3.0-linux-amd64.tar.gz

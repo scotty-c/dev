@@ -117,5 +117,11 @@ export BINDLE_URL=http://bindle.local.fermyon.link/v1
 export HIPPO_URL=http://hippo.local.fermyon.link
 EOF
 
+echo "installer..."
+git clone https://github.com/fermyon/installer.git
+cd installer/local/jobs 
+nomad run traefik.nomad
+nomad run -var="os=linux" -var="arch=amd64" bindle.nomad
+nomad run -var="os=linux" hippo.nomad
 
 echo "# complete!"

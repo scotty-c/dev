@@ -11,11 +11,13 @@ sudo apt-get install -y \
 echo "# rust..."
 su ubuntu -c "curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y"
 sudo chown -R ubuntu:ubuntu /home/ubuntu/.cargo/
+rustup target add wasm32-wasi
 
 echo "# spin..."
 wget https://github.com/fermyon/spin/releases/download/v0.3.0/spin-v0.3.0-linux-amd64.tar.gz
 tar -xzf spin-v0.3.0-linux-amd64.tar.gz
 sudo mv spin /usr/local/bin/spin
+
 
 echo "# Install Nomad..." 
 curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
@@ -31,6 +33,13 @@ bind_addr  = "0.0.0.0"
 server { 
   enabled = true 
   bootstrap_expect = 1 
+}
+consul {
+  server_service_name = "nomad"
+  server_auto_join    = true
+  client_service_name = "nomad-client"
+  client_auto_join    = true
+  auto_advertise      = true
 }
 client {
   enabled = true
